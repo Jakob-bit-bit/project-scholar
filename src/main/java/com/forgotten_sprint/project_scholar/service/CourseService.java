@@ -20,7 +20,7 @@ public class CourseService {
 		this.instructorRepository = instructorRepository;
 	}
 	
-	public List<Instructor> getAllInstructor(){
+	public List<Instructor> getAllInstructors(){
 		return instructorRepository.findAll();
 	}
 	
