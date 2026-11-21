@@ -1,3 +1,4 @@
+/*
 package com.forgotten_sprint.project_scholar.config;
 
 import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
@@ -43,3 +44,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+*/
