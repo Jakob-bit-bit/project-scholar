@@ -103,6 +103,6 @@ public class CourseCreationController {
 
         courseService.saveCourse(course);
 
-        return "redirect:/courses";
+        return "redirect:/catalog";
     }
 }
