@@ -23,7 +23,10 @@
                 <a class="nav-link" th:href="@{/}">Home</a>
                 <a class="nav-link" th:href="@{/about}">About</a>
                 <a class="nav-link" th:href="@{/explore-learning}">Explore Learning</a>
+				<a class="nav-link" th:href="@{/catalog}">Course Catalog</a>
+				<a class="nav-link" th:href="@{/courses/new}" sec:authorize="hasAnyRole('INSTRUCTOR', 'ADMIN')"> Create Course </a>
                 <a class="nav-link"th:href="@{/login}">Sign In</a>
+				
             </div>
         </div>
     </div>
