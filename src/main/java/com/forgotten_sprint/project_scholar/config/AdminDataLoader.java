@@ -26,19 +26,16 @@ public class AdminDataLoader {
                 return;
             }
 
-            String adminPassword =
-                    System.getenv("PROJECT_SCHOLAR_ADMIN_PASSWORD");
-
-            if (adminPassword == null || adminPassword.isBlank()) {
-                throw new IllegalStateException(
-                    "Set PROJECT_SCHOLAR_ADMIN_PASSWORD for the dev admin."
-                );
-            }
-
             User admin = new User();
+
             admin.setUsername("devadmin");
             admin.setEmail("devadmin@projectscholar.local");
-            admin.setPassword(passwordEncoder.encode(adminPassword));
+
+            // Shared password for testing only SORRY PROFESSOR tehe
+            admin.setPassword(
+                passwordEncoder.encode("ScholarDemo2026!")
+            );
+
             admin.setRole(Role.ADMIN);
 
             userRepository.save(admin);
