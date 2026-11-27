@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.forgotten_sprint.project_scholar.repository.UserRepository;
 
 @Service
-public class CutomUserDetailsService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService{
 	private final UserRepository userRepository;
 	
-	public CutomUserDetailsService (UserRepository userRepository) {
+	public CustomUserDetailsService (UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 	
