@@ -22,4 +22,6 @@ public interface CourseCatalogRepository extends JpaRepository<Course, Long> {
 
     @Query("SELECT DISTINCT c.category FROM Course c ORDER BY c.category")
     List<String> findAllCategories();
+    
+    long countByStatus(CourseStatus status); //added one method - jakob
 }
