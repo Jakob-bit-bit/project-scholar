@@ -1,33 +1,75 @@
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white border-bottom">
+<nav th:fragment="navbar"
+     class="navbar navbar-expand-lg bg-white border-bottom"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <div class="container">
 
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2"
            th:href="@{/}">
-
             <img th:src="@{/images/Project-Scholar.png}"
                  alt="Project Scholar Logo"
                  class="navbar-logo">
-
             <span>Project Scholar</span>
         </a>
-
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar">
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="mainNavbar">
-            <div class="navbar-nav ms-auto">
+
+            <div class="navbar-nav ms-auto align-items-lg-center">
                 <a class="nav-link" th:href="@{/}">Home</a>
                 <a class="nav-link" th:href="@{/about}">About</a>
                 <a class="nav-link" th:href="@{/explore-learning}">Explore Learning</a>
-				<a class="nav-link" th:href="@{/catalog}">Course Catalog</a>
-				<a class="nav-link" th:href="@{/courses/new}" sec:authorize="hasAnyRole('INSTRUCTOR', 'ADMIN')"> Create Course </a>
-                <a class="nav-link"th:href="@{/login}">Sign In</a>
-				
+                <a class="nav-link" th:href="@{/catalog}">Course Catalog</a>
+                <!-- Instructor and Admin only -->
+                <a class="nav-link"
+                   th:href="@{/courses/new}"
+                   sec:authorize="hasAnyRole('INSTRUCTOR', 'ADMIN')">
+                    Create Course
+                </a>
+
+                <!-- Admin only -->
+                <a class="nav-link"
+                   th:href="@{/admin}"
+                   sec:authorize="hasRole('ADMIN')">
+                    Admin Dashboard
+                </a>
+
+                <!-- Visitors only -->
+                <a class="nav-link"
+                   th:href="@{/login}"
+                   sec:authorize="isAnonymous()">
+                    Sign In
+                </a>
+
+                <!-- Authenticated users only -->
+                <span class="nav-link"
+                      sec:authorize="isAuthenticated()">
+                    Welcome, <span sec:authentication="name"></span>!
+                </span>
+
+                <!-- Logout must use POST -->
+                <form th:action="@{/logout}"
+                      method="post"
+                      class="d-flex align-items-center"
+                      sec:authorize="isAuthenticated()">
+
+                    <button type="submit"
+                            class="btn btn-outline-danger btn-sm ms-lg-2">
+                        Logout
+                    </button>
+
+                </form>
+
             </div>
+
         </div>
     </div>
 </nav>
