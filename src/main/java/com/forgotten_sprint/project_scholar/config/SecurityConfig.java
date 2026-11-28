@@ -1,5 +1,6 @@
-
 package com.forgotten_sprint.project_scholar.config;
+
+import jakarta.servlet.DispatcherType;
 
 import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,20 @@ public class SecurityConfig {
 
         http
             .authorizeHttpRequests(auth -> auth
+
+                .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
+                .requestMatchers(
+                    "/",
+                    "/about",
+                    "/explore-learning",
+                    "/catalog",
+                    "/login",
+                    "/register",
+                    "/error",
+                    "/css/**",
+                    "/js/**",
+                    "/images/**"
+                ).permitAll()
 
                 // H2 console: ADMIN only
                 .requestMatchers(PathRequest.toH2Console())
