@@ -12,7 +12,10 @@
                  class="navbar-logo">
             <span>Project Scholar</span>
         </a>
-        <button class="navbar-toggler" type="button"
+
+        <!-- Mobile Navigation Toggle -->
+        <button class="navbar-toggler"
+                type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#mainNavbar"
                 aria-controls="mainNavbar"
@@ -20,52 +23,71 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="mainNavbar">
 
             <div class="navbar-nav ms-auto align-items-lg-center">
-                <a class="nav-link" th:href="@{/}">Home</a>
-                <a class="nav-link" th:href="@{/about}">About</a>
-                <a class="nav-link" th:href="@{/explore-learning}">Explore Learning</a>
-                <!-- Instructor and Admin only -->
+
+                <!-- Public Navigation: Visitors -->
+                <th:block sec:authorize="isAnonymous()">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                    <a class="nav-link" th:href="@{/about}">About</a>
+                    <a class="nav-link" th:href="@{/explore-learning}">
+                        Explore Learning
+                    </a>
+                    <a class="nav-link" th:href="@{/login}">Sign In</a>
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </th:block>
+
+                <!-- Course Catalog: All Authenticated Users -->
                 <a class="nav-link"
-                   th:href="@{/courses/new}"
-                   sec:authorize="hasAnyRole('INSTRUCTOR', 'ADMIN')">
-                    Create Course
+                   th:href="@{/catalog}"
+                   sec:authorize="isAuthenticated()">
+                    Course Catalog
                 </a>
 
-                <!-- Admin only -->
-                <a class="nav-link"
-                   th:href="@{/admin}"
-                   sec:authorize="hasRole('ADMIN')">
-                    Admin Dashboard
-                </a>
+                <!-- Student Navigation -->
+                <th:block sec:authorize="hasRole('STUDENT')">
+                    <a class="nav-link" th:href="@{/explore-learning}">
+                        Explore Learning
+                    </a>
+                </th:block>
 
-                <!-- Visitors only -->
-                <a class="nav-link"
-                   th:href="@{/login}"
-                   sec:authorize="isAnonymous()">
-                    Sign In
-                </a>
+                <!-- Instructor Navigation -->
+                <th:block sec:authorize="hasRole('INSTRUCTOR')">
+                    <a class="nav-link" th:href="@{/explore-learning}">
+                        Explore Learning
+                    </a>
 
-                <a class="nav-link"
-                   th:href="@{/register}"
-                   sec:authorize="isAnonymous()">
-                    Register
-                </a>
+                    <a class="nav-link" th:href="@{/courses/new}">
+                        Create Course
+                    </a>
+                </th:block>
 
-                <!-- Authenticated users only -->
+                <!-- Admin Navigation -->
+                <th:block sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" th:href="@{/admin}">
+                        Admin Dashboard
+                    </a>
+
+                    <a class="nav-link" th:href="@{/admin/courses}">
+                        Manage Courses
+                    </a>
+                </th:block>
+
+                <!-- Authenticated User Information -->
                 <span class="nav-link"
                       sec:authorize="isAuthenticated()">
                     Welcome, <span sec:authentication="name"></span>!
                 </span>
 
-                <!-- Display user role -->
+                <!-- Display User Role -->
                 <span class="nav-link"
                       sec:authorize="isAuthenticated()"
                       th:text="${#authentication.authorities[0].authority.replace('ROLE_', '')}">
                 </span>
 
-                <!-- Logout must use POST -->
+                <!-- Logout: POST Request -->
                 <form th:action="@{/logout}"
                       method="post"
                       class="d-flex align-items-center"
@@ -79,8 +101,6 @@
                 </form>
 
             </div>
-
         </div>
     </div>
 </nav>
-
