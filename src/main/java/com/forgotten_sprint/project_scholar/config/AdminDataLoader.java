@@ -1,4 +1,3 @@
-
 package com.forgotten_sprint.project_scholar.config;
 
 import com.forgotten_sprint.project_scholar.model.Role;

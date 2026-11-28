@@ -1,4 +1,3 @@
-
 <nav th:fragment="navbar"
      class="navbar navbar-expand-lg bg-white border-bottom"
      xmlns:th="http://www.thymeleaf.org"
@@ -27,7 +26,6 @@
                 <a class="nav-link" th:href="@{/}">Home</a>
                 <a class="nav-link" th:href="@{/about}">About</a>
                 <a class="nav-link" th:href="@{/explore-learning}">Explore Learning</a>
-                <a class="nav-link" th:href="@{/catalog}">Course Catalog</a>
                 <!-- Instructor and Admin only -->
                 <a class="nav-link"
                    th:href="@{/courses/new}"
@@ -49,10 +47,22 @@
                     Sign In
                 </a>
 
+                <a class="nav-link"
+                   th:href="@{/register}"
+                   sec:authorize="isAnonymous()">
+                    Register
+                </a>
+
                 <!-- Authenticated users only -->
                 <span class="nav-link"
                       sec:authorize="isAuthenticated()">
                     Welcome, <span sec:authentication="name"></span>!
+                </span>
+
+                <!-- Display user role -->
+                <span class="nav-link"
+                      sec:authorize="isAuthenticated()"
+                      th:text="${#authentication.authorities[0].authority.replace('ROLE_', '')}">
                 </span>
 
                 <!-- Logout must use POST -->

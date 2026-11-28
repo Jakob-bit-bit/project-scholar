@@ -327,6 +327,134 @@ body {
     color:  #2878A5;
 }
 
+/* Authentication Pages */
+.auth-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #EAF3F7, #F7F9FB);
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+    background: #FFFFFF;
+    padding: 42px;
+    border: 1px solid #DCE6EC;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(23, 59, 87, 0.10);
+}
+
+.auth-title {
+    color: #173B57;
+    font-size: 2rem;
+    font-weight: 750;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.auth-description {
+    color: #647583;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-form .form-label {
+    color: #263746;
+    font-weight: 600;
+}
+
+.auth-form .form-control {
+    padding: 12px 14px;
+    border: 1px solid #DCE6EC;
+    border-radius: 9px;
+}
+
+.auth-form .form-control:focus {
+    border-color: #2878A5;
+    box-shadow: 0 0 0 0.2rem rgba(40, 120, 165, 0.15);
+}
+
+.auth-submit {
+    width: 100%;
+    margin-top: 15px;
+    background: #2878A5;
+    color: #FFFFFF;
+    border: 1px solid #2878A5;
+    border-radius: 9px;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.auth-submit:hover {
+    background: #173B57;
+    border-color: #173B57;
+    color: #FFFFFF;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #647583;
+}
+
+.auth-footer a {
+    color: #2878A5;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    color: #173B57;
+    text-decoration: underline;
+}
+
+.auth-message {
+    padding: 12px 15px;
+    border-radius: 9px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+}
+
+.auth-error {
+    background: #FDECEC;
+    color: #A83232;
+}
+
+.auth-success {
+    background: #E8F5F0;
+    color: #267653;
+}
+
+.auth-field-error {
+    display: block;
+    color: #C0392B;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+.auth-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 18px;
+    color: #647583;
+}
+
 /* Responsive Design */
 @media (max-width: 767px) {
     .hero-section {
@@ -347,5 +475,15 @@ body {
 
     .about-highlight {
         padding: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-card {
+        padding: 28px 22px;
+    }
+
+    .auth-title {
+        font-size: 1.7rem;
     }
 }
